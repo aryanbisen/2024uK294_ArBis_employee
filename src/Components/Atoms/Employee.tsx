@@ -8,41 +8,42 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import InboxIcon from "@mui/icons-material/Inbox";
 import DraftsIcon from "@mui/icons-material/Drafts";
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
+export interface EmployeeProp{
+  id : Number;
+  birth_date : Date;
+  first_name: String;
+  last_name : String;
+  gender : String;
+  hire_date : Date;
+}
 function Employee() {
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-  const handleListItemClick = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    index: number
-  ) => {
-    setSelectedIndex(index);
-  };
+
+
   return (
     <>
-      <Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-        <nav aria-label="secondary mailbox folders">
-          <List>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemText primary="Employee1" />
-              </ListItemButton>
-            </ListItem>
-            <Divider />
-            <ListItem disablePadding>
-              <ListItemButton component="a" href="#simple-list">
-                <ListItemText primary="Employee2" />
-              </ListItemButton>
-            </ListItem>
-            <Divider />
-            <ListItem disablePadding>
-              <ListItemButton component="a" href="#simple-list">
-                <ListItemText primary="Employee3" />
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </nav>
-      </Box>
+      <TableRow
+        onClick={() => navigate("view/:id")}
+        key={employee.last_name}
+        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+        selected={selectedIndex === index}
+      >
+        <TableCell component="th" scope="row">
+          {employee.last_name}
+        </TableCell>
+        <TableCell align="right">{employee.gender}</TableCell>
+      </TableRow>
     </>
   );
 }
