@@ -1,23 +1,21 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import "./App.css";
+import EmployeeService from "./service/EmployeeService";
 import HomePage from "./Components/Pages/HomePage";
-import LoginPage from "./Components/Pages/LoginPage";
-
-import Navbar from "./Components/Organisms/Navbar";
+import Navbar from './Components/Organisms/Navbar';
+import LoginPage from './Components/Pages/LoginPage';
 
 function App() {
   return (
-    <>
-    hello
-    <Navbar/>
+    <div>
+      <Navbar />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />}></Route>
-          <Route path="/login" element={<LoginPage />}></Route>
-
+          <Route path="/" Component={HomePage} />
+          <Route path="/login" Component={LoginPage} />
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 
