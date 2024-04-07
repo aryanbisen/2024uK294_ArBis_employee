@@ -1,11 +1,12 @@
 import { AxiosInstance } from "axios";
 import { defaultAxiosInstance } from "./Api";
 import { authenticate } from "./Authentification";
+import LoginPage from "../Components/Pages/LoginPage";
 
 const EmployeeService = (api: AxiosInstance = defaultAxiosInstance) => ({
-  getEmployeeService: async () => {
+  login: async (email: string, password: string) => {
     try {
-      await authenticate("aryan@mail.com", "1234");
+      await authenticate(email, password);
       const accessToken = localStorage.getItem("accessToken");
       if (!accessToken) {
         throw new Error("No token.");
@@ -16,11 +17,15 @@ const EmployeeService = (api: AxiosInstance = defaultAxiosInstance) => ({
         },
       };
       const data = await api.get("/employee", config);
-      console.log(data);
-      return data["data"];
+      
     } catch (error) {
       throw error;
     }
+  },
+
+  getAllEmployees: async () => {
+const data = await api.get("/employee")
+    return data["data"];
   },
 });
 

@@ -11,22 +11,23 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import EmployeeService from "../../service/EmployeeService";
+import LoginPage from "./LoginPage";
 
 function HomePage() {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [APIData, setAPIData] = useState([]);
-
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFyeWFuQG1haWwuY29tIiwiaWF0IjoxNzEyNDA1MzczLCJleHAiOjE3MTI0MDg5NzMsInN1YiI6IjIifQ.lcMLs-WjmVofRJEM3qXxPDLe2v2rn3WI4oQI4_gyRcM";
-
   useEffect(() => {
     EmployeeService()
-      .getEmployeeService()
+      .getAllEmployees()
       .then((response) => {
         setAPIData(response);
         console.log(response);
       });
   }, []);
 
+
+  
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
