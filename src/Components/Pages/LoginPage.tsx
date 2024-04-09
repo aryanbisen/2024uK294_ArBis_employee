@@ -3,16 +3,20 @@ import SendIcon from "@mui/icons-material/Send";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import EmployeeService from "../../service/EmployeeService";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [APIData, setAPIData] = useState([]);
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Email:", email);
-
     EmployeeService().login(email, password);
+    if( await EmployeeService().login(email, password) == true){
+      console.log("logged in succesfully.")
+      navigate("/../");
+    }
   };
 
   console.log(email);
@@ -34,7 +38,7 @@ function LoginPage() {
           label="Filled"
           variant="filled"
         />
-        <Button type="submit" variant="contained" endIcon={<SendIcon />}>
+        <Button  type="submit" variant="contained" endIcon={<SendIcon />}>
           Submit
         </Button>
       </form>

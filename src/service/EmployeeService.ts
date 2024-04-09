@@ -1,10 +1,11 @@
 import { AxiosInstance } from "axios";
 import { defaultAxiosInstance } from "./Api";
 import { authenticate } from "./Authentification";
-import LoginPage from "../Components/Pages/LoginPage";
 
 const EmployeeService = (api: AxiosInstance = defaultAxiosInstance) => ({
+  
   login: async (email: string, password: string) => {
+
     try {
       await authenticate(email, password);
       const accessToken = localStorage.getItem("accessToken");
@@ -17,7 +18,7 @@ const EmployeeService = (api: AxiosInstance = defaultAxiosInstance) => ({
         },
       };
       const data = await api.get("/employee", config);
-      
+      return true;
     } catch (error) {
       throw error;
     }

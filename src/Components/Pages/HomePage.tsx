@@ -41,7 +41,7 @@ function HomePage() {
         <TableBody>
           {APIData.map((data) => {
             return (
-              <TableRow>
+              <TableRow >
                 <TableCell>{data.id}</TableCell>
                 <TableCell>{data.first_name}</TableCell>
                 <TableCell>{data.gender}</TableCell>
