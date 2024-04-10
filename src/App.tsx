@@ -4,6 +4,7 @@ import EmployeeService from "./service/EmployeeService";
 import HomePage from "./Components/Pages/HomePage";
 import Navbar from './Components/Organisms/Navbar';
 import LoginPage from './Components/Pages/LoginPage';
+import EmployeeDetailPage from './Components/Pages/EmployeeDetailPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" Component={HomePage} />
           <Route path="/login" Component={LoginPage} />
+          <Route path="/employee/:employeeId" Component={EmployeeDetailPage} />
         </Routes>
       </BrowserRouter>
     </div>

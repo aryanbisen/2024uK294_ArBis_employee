@@ -1,11 +1,10 @@
 import { AxiosInstance } from "axios";
 import { defaultAxiosInstance } from "./Api";
 import { authenticate } from "./Authentification";
+import Employee, { EmployeeProp } from "../Components/Atoms/Employee";
 
 const EmployeeService = (api: AxiosInstance = defaultAxiosInstance) => ({
-  
   login: async (email: string, password: string) => {
-
     try {
       await authenticate(email, password);
       const accessToken = localStorage.getItem("accessToken");
@@ -25,7 +24,12 @@ const EmployeeService = (api: AxiosInstance = defaultAxiosInstance) => ({
   },
 
   getAllEmployees: async () => {
-const data = await api.get("/employee")
+    const data = await api.get("/employee");
+    return data["data"];
+  },
+
+  getEmployeeById: async (employeeId: number): Promise<EmployeeProp | null> => {
+    const data = await api.get<EmployeeProp>(`/employee/${employeeId}`);
     return data["data"];
   },
 });

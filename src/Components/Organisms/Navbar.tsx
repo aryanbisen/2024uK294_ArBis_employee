@@ -6,6 +6,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -21,10 +22,12 @@ function Navbar() {
                 aria-label="menu"
                 sx={{ mr: 2 }}
               ></IconButton>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <Typography  variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 Employees
               </Typography>
-              <Button href="/login" color="inherit">Login</Button>
+              <Button href="/login" color="inherit">
+                Login
+              </Button>
             </Toolbar>
           </AppBar>
         </Box>
