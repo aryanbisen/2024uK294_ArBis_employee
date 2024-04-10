@@ -1,7 +1,7 @@
 import { AxiosInstance } from "axios";
 import { defaultAxiosInstance } from "./Api";
 import { authenticate } from "./Authentification";
-import Employee, { EmployeeProp } from "../Components/Atoms/Employee";
+import Employee, { CreateEmployeeProp, EmployeeProp } from "../Components/Atoms/Employee";
 
 const EmployeeService = (api: AxiosInstance = defaultAxiosInstance) => ({
   login: async (email: string, password: string) => {
@@ -36,7 +36,12 @@ const EmployeeService = (api: AxiosInstance = defaultAxiosInstance) => ({
   deleteEmployee: async (employeeId : number) : Promise<void> => {
      await api.delete(`employee/${employeeId}`)
       window.location.reload();
-
+  },
+  createEmployee: async (APIData: CreateEmployeeProp): Promise<void> =>{
+     await api.post("employee", APIData)
+     console.log(APIData);
+     
+     alert("Susscessfully created employee")
   }
 });
 

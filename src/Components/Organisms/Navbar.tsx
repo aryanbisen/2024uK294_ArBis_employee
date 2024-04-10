@@ -6,9 +6,9 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import "./Navbar.css"
-
+import { Link, useNavigate } from "react-router-dom";
+import "./Navbar.css";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 function Navbar() {
   return (
     <>
@@ -16,9 +16,19 @@ function Navbar() {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
+              
               <Button variant="contained">Aryan's employees</Button>
+
               <div id="login-button">
-                <Button  href="/login" color="inherit">
+                {" "}
+                <Button
+                  href="/create-employee"
+                  variant="contained"
+                  startIcon={<AddCircleOutlineIcon />}
+                >
+                  Create
+                </Button>
+                <Button href="/login" color="inherit">
                   Login
                 </Button>
               </div>
