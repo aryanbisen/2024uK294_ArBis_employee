@@ -3,9 +3,7 @@ import { Field, Form, Formik } from "formik";
 import { CreateEmployeeProp } from "../Atoms/Employee";
 import EmployeeService from "../../service/EmployeeService";
 
-
 function CreateEmployeePage() {
-  
   const initialValues: CreateEmployeeProp = {
     first_name: "",
     last_name: "",
@@ -22,20 +20,21 @@ function CreateEmployeePage() {
       error = "Required";
     } else if (value.length > 20) {
       error = "Name can't be over 20 letters";
-    } else if (!(/[A-Za-z ]+/.test(value))) {
+    } else if (!/[A-Za-z ]+/.test(value)) {
       error = "Only letters allowed";
-    } 
+    }
     return error;
   };
 
   const validateGender = (value: string) => {
     let error;
-    if (!value) {
-      error = "Required";
-    } 
+
+    if (value.toUpperCase() == "F" || value.toUpperCase() == "M") {
+    } else {
+      error = "Please Enter M or F";
+    }
     return error;
   };
-
 
   return (
     <div>
