@@ -12,9 +12,11 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import React from "react";
 
 function CreateEmployeePage() {
+    /*
   const [birthDate, setBirthDate] = React.useState<Dayjs | null>(
     dayjs("2022-04-17")
   );
+  */
 
   const initialValues: CreateEmployeeProp = {
     first_name: "",
@@ -61,7 +63,6 @@ function CreateEmployeePage() {
       <Formik
         initialValues={initialValues}
         onSubmit={async (employeeData) => {
-          console.log(employeeData);
           await EmployeeService().createEmployee(employeeData);
           navigate("../");
         }}
@@ -85,6 +86,7 @@ function CreateEmployeePage() {
             <label htmlFor="last_name">Last name:</label>
             <br />
             <Field
+            
               required
               label="Last name"
               type="Text"

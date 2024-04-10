@@ -33,16 +33,19 @@ const EmployeeService = (api: AxiosInstance = defaultAxiosInstance) => ({
     return data["data"];
   },
 
-  deleteEmployee: async (employeeId : number) : Promise<void> => {
-     await api.delete(`employee/${employeeId}`)
-      window.location.reload();
+  deleteEmployee: async (employeeId: number): Promise<void> => {
+    await api.delete(`employee/${employeeId}`);
+    window.location.reload();
   },
-  createEmployee: async (APIData: CreateEmployeeProp): Promise<void> =>{
-     await api.post("employee", APIData)
-     console.log(APIData);
-     
-     alert("Susscessfully created employee")
-  }
+  createEmployee: async (APIData: CreateEmployeeProp): Promise<void> => {
+    await api.post("employee", APIData);
+    alert("Successfully created employee");
+  },
+  updateEmployee: async (APIData: EmployeeProp): Promise<void> => {
+    await api.post("employee", APIData);
+    console.log(APIData);
+    alert("Successfully updated employee");
+  },
 });
 
 export default EmployeeService;

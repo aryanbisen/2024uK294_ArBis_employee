@@ -52,6 +52,14 @@ function EmployeeDetailPage() {
       >
         <TextField
           id="outlined-read-only-input"
+          label="ID"
+          defaultValue={APIData.id}
+          InputProps={{
+            readOnly: true,
+          }}
+        />
+        <TextField
+          id="outlined-read-only-input"
           label="First name"
           defaultValue={APIData.first_name}
           InputProps={{
@@ -91,10 +99,10 @@ function EmployeeDetailPage() {
           }}
         />
         <br />
-        <IconButton component={Link} to="../edit-employee/:employeeId">
+        <IconButton onClick={() => navigate(`/edit-employee/${APIData.id}`)}>
           <EditIcon />
         </IconButton>
-        <IconButton onClick={ () => deleteEmployee(APIData.id)}>
+        <IconButton onClick={() => deleteEmployee(APIData.id)}>
           <DeleteForeverIcon />
         </IconButton>
       </Box>
