@@ -23,7 +23,7 @@ function Navbar() {
                 sx={{ mr: 2 }}
               ></IconButton>
               <Typography  variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Employees
+               Aryan's Employees
               </Typography>
               <Button href="/login" color="inherit">
                 Login
