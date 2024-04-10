@@ -22,7 +22,9 @@ function CreateEmployeePage() {
       error = "Required";
     } else if (value.length > 20) {
       error = "Name can't be over 20 letters";
-    }
+    } else if (!(/[A-Za-z ]+/.test(value))) {
+      error = "Only letters allowed";
+    } 
     return error;
   };
 
@@ -30,9 +32,7 @@ function CreateEmployeePage() {
     let error;
     if (!value) {
       error = "Required";
-    } else if (value != "F" && value != "M") {
-      error = "Name can't be over 20 letters";
-    }
+    } 
     return error;
   };
 
@@ -48,7 +48,7 @@ function CreateEmployeePage() {
       >
         {({ errors, touched }) => (
           <Form>
-            <label htmlFor="fist_name">First name:</label>
+            <label htmlFor="first_name">First name:</label>
             <br />
             <Field
               label="First name"
@@ -65,15 +65,12 @@ function CreateEmployeePage() {
             <label htmlFor="last_name">Last name:</label>
             <br />
             <Field
-            
               required
               label="Last name"
               type="Text"
               id="last_name"
               name="last_name"
-              inputProps={{
-                pattern: "[A-Za-z ]+",
-              }}
+              validate={validateName}
             />
             {errors.last_name && touched.last_name && (
               <div>{errors.last_name}</div>
