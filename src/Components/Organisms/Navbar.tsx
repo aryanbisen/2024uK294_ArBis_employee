@@ -16,7 +16,7 @@ function Navbar() {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
-              <Button variant="contained">
+              <Button variant="contained" href="/">
                 Aryan's employees
               </Button>
 

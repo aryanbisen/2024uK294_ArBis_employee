@@ -12,20 +12,41 @@ function EditEmployeePage() {
   const { employeeId } = useParams();
   const [APIData, setAPIData] = useState<EmployeeProp | null>(null);
 
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [birthDate, setBirthDate] = useState(new Date);
+  const [gender, setGender] = useState("");
+  const [hireDate, setHireDate] = useState("");
+
   useEffect(() => {
     async function getEmployeeData() {
       const employee = await EmployeeService().getEmployeeById(
         Number(employeeId)
       );
+       setFirstName(employee.first_name);
+       setLastName(employee.last_name);
+       setBirthDate(employee.birth_date);
+       setGender(employee?.gender);
+       setHireDate(employee?.hire_date);
 
-      setAPIData(employee);
+
+      //setAPIData(employee);
     }
 
     getEmployeeData();
   }, [employeeId]);
 
   const updateOnClickHandler = async () => {
-    await EmployeeService().updateEmployee(setAPIData);
+    console.log(firstName);
+    
+    await EmployeeService().updateEmployee(
+      employeeId,
+      firstName,
+      lastName,
+      birthDate,
+      gender,
+      hireDate
+    );
   };
 
   const initialValues: EmployeeProp = {
@@ -50,8 +71,9 @@ function EditEmployeePage() {
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => {
-          console.log(values);
+        onSubmit={() => {
+          updateOnClickHandler();
+          //console.log(values);
           // await EmployeeService().updateEmployee(employeeData);
           // navigate("../");
         }}
@@ -62,10 +84,10 @@ function EditEmployeePage() {
             <label htmlFor="fist_name">First name:</label>
             <br />
             <Field
-              value={APIData?.first_name}
+              value={firstName}
               onChange={(e: {
                 target: { value: SetStateAction<EmployeeProp | null> };
-              }) => setAPIData(e.target.value)}
+              }) => setFirstName(e.target.value)}
               label="First name"
               type="Text"
               id="first_name"
@@ -79,12 +101,12 @@ function EditEmployeePage() {
             <label htmlFor="last_name">Last name:</label>
             <br />
             <Field
-              value={APIData?.last_name}
+              value={lastName}
               required
               label="Last name"
               onChange={(e: {
                 target: { value: SetStateAction<EmployeeProp | null> };
-              }) => setAPIData(e.target.value)}
+              }) => setLastName(e.target.value)}
               type="Text"
               id="last_name"
               name="last_name"
@@ -99,10 +121,10 @@ function EditEmployeePage() {
             <label htmlFor="birth_date">Birth date:</label>
             <br />
             <Field
-              value={APIData?.birth_date}
+              value={birthDate}
               onChange={(e: {
                 target: { value: SetStateAction<EmployeeProp | null> };
-              }) => setAPIData(e.target.value)}
+              }) => setBirthDate(e.target.value)}
               label="Birth date"
               type="date"
               id="birth_date"
@@ -118,8 +140,8 @@ function EditEmployeePage() {
             <Field
               onChange={(e: {
                 target: { value: SetStateAction<EmployeeProp | null> };
-              }) => setAPIData(e.target.value)}
-              value={APIData?.gender}
+              }) => setGender(e.target.value)}
+              value={gender}
               label="Gender"
               type="Text"
               id="gender"
@@ -134,8 +156,8 @@ function EditEmployeePage() {
             <Field
               onChange={(e: {
                 target: { value: SetStateAction<EmployeeProp | null> };
-              }) => setAPIData(e.target.value)}
-              value={APIData?.hire_date}
+              }) => setHireDate(e.target.value)}
+              value={hireDate}
               label="Hire date"
               type="date"
               id="hire_date"
@@ -147,7 +169,9 @@ function EditEmployeePage() {
             )}
             <br />
 
-            <button type="submit">Submit</button>
+            <button onClick={() => updateOnClickHandler} type="submit">
+              Submit
+            </button>
           </Form>
         )}
       </Formik>

@@ -41,9 +41,13 @@ const EmployeeService = (api: AxiosInstance = defaultAxiosInstance) => ({
     await api.post("employee", APIData);
     alert("Successfully created employee");
   },
-  updateEmployee: async (APIData: EmployeeProp): Promise<void> => {
-    await api.post("employee", APIData);
-    console.log(APIData);
+  updateEmployee: async (employeeId, first_name, last_name, birth_date, gender, hire_date): Promise<void> => {
+    const APIData = {first_name,
+      last_name,
+      birth_date,
+      gender,
+      hire_date};
+    await api.put(`employee/${employeeId}`, APIData);
     alert("Successfully updated employee");
   },
 });
