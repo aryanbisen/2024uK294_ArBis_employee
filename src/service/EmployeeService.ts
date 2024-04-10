@@ -1,7 +1,7 @@
 import { AxiosInstance } from "axios";
 import { defaultAxiosInstance } from "./Api";
 import { authenticate } from "./Authentification";
-import Employee, { CreateEmployeeProp, EmployeeProp } from "../Components/Atoms/Employee";
+import { CreateEmployeeProp, EmployeeProp } from "../Components/Atoms/Employee";
 
 const EmployeeService = (api: AxiosInstance = defaultAxiosInstance) => ({
   login: async (email: string, password: string) => {

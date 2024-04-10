@@ -8,7 +8,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 function EmployeeDetailPage() {
     const navigate = useNavigate();
-  //UseParams?
+  //UseParams.
   const { employeeId } = useParams();
   //UseState is initialized with null in the beginning.
   const [APIData, setAPIData] = useState<EmployeeProp | null>(null);

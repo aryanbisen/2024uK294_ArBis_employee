@@ -1,8 +1,6 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
-  CreateEmployeeProp,
   EmployeeProp,
-  UpdateEmployeeProp,
 } from "../Atoms/Employee";
 import { SetStateAction, useEffect, useState } from "react";
 import EmployeeService from "../../service/EmployeeService";
@@ -10,14 +8,13 @@ import { Field, Form, Formik } from "formik";
 
 function EditEmployeePage() {
   const { employeeId } = useParams();
-  const [APIData, setAPIData] = useState<EmployeeProp | null>(null);
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [birthDate, setBirthDate] = useState(new Date);
   const [gender, setGender] = useState("");
   const [hireDate, setHireDate] = useState("");
 
+  const navigate = useNavigate()
   useEffect(() => {
     async function getEmployeeData() {
       const employee = await EmployeeService().getEmployeeById(
@@ -29,8 +26,6 @@ function EditEmployeePage() {
        setGender(employee?.gender);
        setHireDate(employee?.hire_date);
 
-
-      //setAPIData(employee);
     }
 
     getEmployeeData();
@@ -73,9 +68,8 @@ function EditEmployeePage() {
         initialValues={initialValues}
         onSubmit={() => {
           updateOnClickHandler();
-          //console.log(values);
-          // await EmployeeService().updateEmployee(employeeData);
-          // navigate("../");
+                   navigate("../../");
+
         }}
         enableReinitialize={true}
       >
@@ -147,7 +141,6 @@ function EditEmployeePage() {
               id="gender"
               name="gender"
               required
-              // validate={validateGender}
             />
             {errors.gender && touched.gender && <div>{errors.gender}</div>}
             <br />

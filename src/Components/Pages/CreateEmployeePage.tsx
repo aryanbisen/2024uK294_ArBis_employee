@@ -2,22 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { Field, Form, Formik } from "formik";
 import { CreateEmployeeProp } from "../Atoms/Employee";
 import EmployeeService from "../../service/EmployeeService";
-import { TextField } from "@mui/material";
 
-import dayjs, { Dayjs } from "dayjs";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import React from "react";
 
 function CreateEmployeePage() {
-    /*
-  const [birthDate, setBirthDate] = React.useState<Dayjs | null>(
-    dayjs("2022-04-17")
-  );
-  */
-
+  
   const initialValues: CreateEmployeeProp = {
     first_name: "",
     last_name: "",
@@ -48,16 +36,7 @@ function CreateEmployeePage() {
     return error;
   };
 
-  /*
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-    if (e.target.validity.valid) {
-      setNameError(false);
-    } else {
-      setNameError(true);
-    }
-  };
-*/
+
   return (
     <div>
       <Formik
