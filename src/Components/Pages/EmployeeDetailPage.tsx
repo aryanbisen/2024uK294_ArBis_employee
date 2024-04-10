@@ -1,10 +1,13 @@
-import { Box, TextField } from "@mui/material";
+import { Box, IconButton, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import EmployeeService from "../../service/EmployeeService";
 import { EmployeeProp } from "../Atoms/Employee";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 function EmployeeDetailPage() {
+    const navigate = useNavigate();
   //UseParams?
   const { employeeId } = useParams();
   //UseState is initialized with null in the beginning.
@@ -30,6 +33,11 @@ function EmployeeDetailPage() {
         <h1>Product doesn't exist.</h1>
       </>
     );
+  }
+
+  function deleteEmployee(employeeId : number): void{
+    EmployeeService().deleteEmployee(employeeId);
+    navigate("../../")
   }
   return (
     <div>
@@ -82,6 +90,13 @@ function EmployeeDetailPage() {
             readOnly: true,
           }}
         />
+        <br />
+        <IconButton component={Link} to="../edit-employee/:employeeId">
+          <EditIcon />
+        </IconButton>
+        <IconButton onClick={ () => deleteEmployee(APIData.id)}>
+          <DeleteForeverIcon />
+        </IconButton>
       </Box>
     </div>
   );

@@ -1,7 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useFormik } from "formik";
-import {  useState } from "react";
+import { useState } from "react";
 import EmployeeService from "../../service/EmployeeService";
 import { useNavigate } from "react-router-dom";
 
@@ -13,8 +13,8 @@ function LoginPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     EmployeeService().login(email, password);
-    if( await EmployeeService().login(email, password) == true){
-      console.log("logged in succesfully.")
+    if ((await EmployeeService().login(email, password)) == true) {
+      console.log("logged in succesfully.");
       navigate("/../");
     }
   };
@@ -24,21 +24,23 @@ function LoginPage() {
 
   return (
     <>
+      <h1>Login Page</h1>
       <form name="form" action="../" onSubmit={handleSubmit}>
-        LoginPage
         <TextField
           onChange={(e) => setEmail(e.target.value)}
           id="filled-basic"
-          label="Filled"
+          label="E-mail"
           variant="filled"
         />
+        <br />
         <TextField
           onChange={(e) => setPassword(e.target.value)}
           id="filled-basic"
-          label="Filled"
+          label="Password"
           variant="filled"
         />
-        <Button  type="submit" variant="contained" endIcon={<SendIcon />}>
+        <br />
+        <Button type="submit" variant="contained" endIcon={<SendIcon />}>
           Submit
         </Button>
       </form>

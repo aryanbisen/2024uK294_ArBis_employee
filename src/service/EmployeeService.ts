@@ -32,6 +32,12 @@ const EmployeeService = (api: AxiosInstance = defaultAxiosInstance) => ({
     const data = await api.get<EmployeeProp>(`/employee/${employeeId}`);
     return data["data"];
   },
+
+  deleteEmployee: async (employeeId : number) : Promise<void> => {
+     await api.delete(`employee/${employeeId}`)
+      window.location.reload();
+
+  }
 });
 
 export default EmployeeService;

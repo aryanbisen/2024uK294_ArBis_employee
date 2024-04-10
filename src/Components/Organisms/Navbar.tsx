@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import "./Navbar.css"
 
 function Navbar() {
   return (
@@ -15,19 +16,12 @@ function Navbar() {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-              ></IconButton>
-              <Typography  variant="h6" component="div" sx={{ flexGrow: 1 }}>
-               Aryan's Employees
-              </Typography>
-              <Button href="/login" color="inherit">
-                Login
-              </Button>
+              <Button variant="contained">Aryan's employees</Button>
+              <div id="login-button">
+                <Button  href="/login" color="inherit">
+                  Login
+                </Button>
+              </div>
             </Toolbar>
           </AppBar>
         </Box>
